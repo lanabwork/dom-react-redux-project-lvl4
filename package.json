@@ -2,7 +2,7 @@
   "name": "frontend_l4_chat_project",
   "version": "0.0.1",
   "description": "",
-  "main": "server/plugin.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
     "test": "jest",
@@ -15,9 +15,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:hexlet-components/projects-frontend-l4-server.git"
+    "url": "git@github.com:lanabwork/dom-react-redux-project-lvl4.git"
   },
-  "author": "Kirill Mokevnin",
+  "author": "Svetlana Baranova",
   "license": "ISC",
   "homepage": "",
   "dependencies": {
@@ -40,7 +40,9 @@
     "popper.js": "^1.16.1",
     "pug": "^3.0.2",
     "react": "^17.0.2",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.3",
