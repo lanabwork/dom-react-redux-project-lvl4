@@ -1,7 +1,9 @@
+// @ts-check
 {
   "compilerOptions": {
+    "jsx": "react",
     "target": "ESNext",
-    "module": "nodenext"
+    // "module": "nodenext"
   }
 }
 
