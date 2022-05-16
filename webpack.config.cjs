@@ -2,6 +2,7 @@
 
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 
@@ -9,6 +10,10 @@ module.exports = {
   mode,
   resolve: {
     extensions: ['.js', '.jsx'],
+    modules: [path.resolve('./src'), path.resolve('./node_modules')],
+    alias: {
+      '@': path.join(__dirname, './src'),
+    },
   },
   output: {
     path: path.join(__dirname, 'dist', 'public'),
@@ -23,6 +28,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
+    new SpriteLoaderPlugin(),
   ],
   module: {
     rules: [
@@ -38,6 +44,23 @@ module.exports = {
           { loader: 'css-loader' },
           { loader: 'postcss-loader' },
           { loader: 'sass-loader' },
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
+        loader: 'url-loader',
+        include: path.resolve(__dirname, 'src/assets/images'),
+        options: {
+          limit: 512,
+          name: 'assets/images/[name].[ext]',
+        },
+      },
+      {
+        test: /\.svg$/,
+        include: path.resolve(__dirname, 'src/assets/icons'),
+        use: [
+          'svg-sprite-loader',
+          'svgo-loader',
         ],
       },
     ],

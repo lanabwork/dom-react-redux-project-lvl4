@@ -1,0 +1,1 @@
+export const COUNT_MESSAGES_LABEL = ['сообщение', 'сообщения', 'сообщений'];
