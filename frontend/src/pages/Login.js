@@ -1,10 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import {Container, Button, Col, Form, Row, Card, Image, FloatingLabel } from 'react-bootstrap';
+import { Container, Button, Col, Form, Row, Card, Image, FloatingLabel, Alert } from 'react-bootstrap';
+import { login } from '../api/auth';
+import { useAuth } from '../context/auth';
 
 const Login = () => {
+  const { setUser } = useAuth();
+  const navigate = useNavigate();
+
   let LoginSchema = yup.object().shape({
     username: yup.string().required('Обязательное поле'),
     password: yup.string().required('Обязательное поле'),
@@ -14,15 +19,41 @@ const Login = () => {
     initialValues: {
       username: '',
       password: '',
+      isError: false,
     },
+    isSubmitting: false,
     validationSchema: LoginSchema,
-    onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
+    onSubmit: (values, { setSubmitting }) => {
+      login(values)
+        .then(({ token, username }) => {
+          setUser(token, username);
+          navigate('/');
+        })
+        .catch(() => {
+          values.isError = true;
+        })
+        .finally(() => {
+          setSubmitting(false);
+        });
     },
   });
 
+  const closeAlert = () => {
+    formik.values.isError = false;
+  };
+
   return (
-    <Container fluid className='h-100'>
+    <Container fluid className='h-100 login'>
+      {!!formik.values.isError &&
+        <Alert
+          variant='danger'
+          onClose={() => closeAlert()}
+          dismissible
+          className='position-fixed top-0 end-0'
+        >
+          Не правильно введен логин/пароль
+        </Alert>
+      }
       <Row className="justify-content-center h-100">
         <Col className='col-12' md={8} xxl={6}>
           <Card className='shadow-sm'>
@@ -66,7 +97,7 @@ const Login = () => {
                   variant="outline-primary"
                   className='w-100 mb-3'
                   type="submit"
-                  disabled={!!formik.errors.username || !!formik.errors.password}
+                  disabled={!!formik.errors.username || !!formik.errors.password || formik.isSubmitting}
                 >
                   Войти
                 </Button>
