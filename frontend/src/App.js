@@ -5,10 +5,12 @@ import Login from './pages/Login.js';
 import NotFound from './pages/NotFound.js';
 import Header from './components/Header.js';
 import RequireAuth from './components/RequireAuth';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-    <div className='d-flex flex-column align-items-center'>
+    <div className='d-flex flex-column align-items-center h-100'>
+      <ToastContainer />
       <Header />
       <BrowserRouter>
         <Routes>

@@ -2,9 +2,10 @@ import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { Container, Button, Col, Form, Row, Card, Image, FloatingLabel, Alert } from 'react-bootstrap';
+import { Container, Button, Col, Form, Row, Card, Image, FloatingLabel } from 'react-bootstrap';
 import { login } from '../api/auth';
 import { useAuth } from '../context/auth';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const { setUser } = useAuth();
@@ -19,7 +20,6 @@ const Login = () => {
     initialValues: {
       username: '',
       password: '',
-      isError: false,
     },
     isSubmitting: false,
     validationSchema: LoginSchema,
@@ -30,7 +30,7 @@ const Login = () => {
           navigate('/');
         })
         .catch(() => {
-          values.isError = true;
+          toast.error('Не правильно введен логин/пароль');
         })
         .finally(() => {
           setSubmitting(false);
@@ -38,22 +38,8 @@ const Login = () => {
     },
   });
 
-  const closeAlert = () => {
-    formik.values.isError = false;
-  };
-
   return (
     <Container fluid className='h-100 login'>
-      {!!formik.values.isError &&
-        <Alert
-          variant='danger'
-          onClose={() => closeAlert()}
-          dismissible
-          className='position-fixed top-0 end-0'
-        >
-          Не правильно введен логин/пароль
-        </Alert>
-      }
       <Row className="justify-content-center h-100">
         <Col className='col-12' md={8} xxl={6}>
           <Card className='shadow-sm'>
