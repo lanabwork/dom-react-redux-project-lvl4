@@ -10,15 +10,24 @@ import Messages from 'components/Messages';
 import MessageForm from 'components/MessageForm';
 
 const Main = () => {
-  const { accessToken } = useAuth();
+  const { accessToken, username } = useAuth();
   const dispatch = useDispatch();
   const channels = useSelector(channelsSelectors.selectAll);
+  const activeChannelId = useSelector((state) => state.channels.activeChannelId);
+
+  const getActiveChannelName = () => {
+    return channels.find((channel) => channel.id === activeChannelId)?.name;
+  };
+
+  const activeChannelName = getActiveChannelName();
 
   useEffect(() => {
-    getData(accessToken).then((data) => {
-      dispatch(setChannels(data?.channels));
-      dispatch(setMessages(data?.messages));
-    });
+    if (accessToken) {
+      getData(accessToken).then((data) => {
+        dispatch(setChannels(data?.channels));
+        dispatch(setMessages(data?.messages));
+      });
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!channels.length) return null;
@@ -30,8 +39,8 @@ const Main = () => {
           <Channels />
         </Col>
         <Col className='p-0 h-100 d-flex flex-column'>
-          <Messages />
-          <MessageForm />
+          <Messages activeChannelId={activeChannelId} activeChannelName={activeChannelName} />
+          <MessageForm activeChannelId={activeChannelId} username={username} />
         </Col>
       </Row>
     </Container>

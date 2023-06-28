@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './assets/scss/index.scss';
-import { AuthProvider } from './context/auth';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { store } from './store/store'
 import { Provider } from 'react-redux'
+import 'assets/scss/index.scss';
+import { AuthProvider } from 'context/auth';
+import App from './App';
+import reportWebVitals from 'reportWebVitals';
+import { store } from 'store/store'
 
 document.querySelector('html').classList.add('h-100');
 document.body.classList.add('bg-light', 'h-100');
 document.getElementById('root').classList.add('h-100');
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <AuthProvider>

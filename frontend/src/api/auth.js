@@ -6,3 +6,8 @@ export const login = ({ username, password }) => {
     .then((res) => res.data)
     .catch((e) => console.error(e));
 };
+export const signup = ({ username, password }) => {
+  return axios.post(routes.signupPath(), { username, password })
+    .then((res) => res.data)
+    .catch((e) => console.error(e));
+};

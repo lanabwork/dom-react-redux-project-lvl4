@@ -15,10 +15,14 @@ export const channelsSlice = createSlice({
       state.activeChannelId = action.payload;
     },
     setChannels(state, action) {
-      channelsAdapter.setAll(state.channels, action.payload)
+      channelsAdapter.setAll(state.channels, action.payload);
     },
-    addChannel: channelsAdapter.addOne,
-    removeChannel: channelsAdapter.removeOne,
+    addChannel(state, action) {
+      channelsAdapter.addOne(state.channels, action.payload);
+    },
+    removeChannel(state, action) {
+      channelsAdapter.removeOne(state.channels, action.payload.id);
+    },
     updateChannel: channelsAdapter.updateOne,
   },
 })

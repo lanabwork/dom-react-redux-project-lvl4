@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
+import socket from 'socket';
 import { ReactComponent as ArrowRightSquare } from 'assets/icons/arrow-right-square.svg';
 
-const MessageForm = () => {
+const MessageForm = ({ username, activeChannelId }) => {
   const [messageText, setMessageText] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const sendMessage = (e) => {
     e.preventDefault();
-    console.log(111);
+    setIsSubmitting(true);
+    socket.emit('newMessage', {
+      body: messageText,
+      username,
+      channelId: activeChannelId,
+    }, (response) => {
+      if (response.status === 'ok') {
+        setMessageText('');
+        setIsSubmitting(false);
+      }
+    });
   };
 
   return (
@@ -30,7 +42,7 @@ const MessageForm = () => {
             type="submit"
             variant="link"
             className='btn-group-vertical'
-            disabled={!messageText.length}
+            disabled={!messageText.length || isSubmitting}
           >
             <ArrowRightSquare width='20' height='20' />
           </Button>
