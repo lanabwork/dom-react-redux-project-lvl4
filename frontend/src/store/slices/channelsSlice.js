@@ -23,12 +23,17 @@ export const channelsSlice = createSlice({
     removeChannel(state, action) {
       channelsAdapter.removeOne(state.channels, action.payload.id);
     },
-    updateChannel: channelsAdapter.updateOne,
+    renameChannel(state, action) {
+      channelsAdapter.updateOne(
+        state.channels,
+        {id: action.payload.id, changes: { name: action.payload.name }}
+      );
+    },
   },
 })
 
 export const channelsSelectors = channelsAdapter.getSelectors((state) => state.channels.channels);
 
-export const { setActiveChannelId, setChannels, addChannel, removeChannel, updateChannel } = channelsSlice.actions;
+export const { setActiveChannelId, setChannels, addChannel, removeChannel, renameChannel } = channelsSlice.actions;
 
 export default channelsSlice.reducer;

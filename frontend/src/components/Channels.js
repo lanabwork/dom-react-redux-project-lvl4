@@ -6,6 +6,7 @@ import { ReactComponent as PlusSquare } from 'assets/icons/plus-square.svg';
 import Channel from 'components/Channel';
 import AddChannelModal from 'components/modals/AddChannelModal';
 import RemoveChannelModal from 'components/modals/RemoveChannelModal';
+import RenameChannelModal from 'components/modals/RenameChannelModal';
 
 const Channels = () => {
   const [modal, setModal] = useState('');
@@ -37,6 +38,12 @@ const Channels = () => {
       />}
       {modal === 'removeChannel' && <RemoveChannelModal
         isShowed={modal}
+        selectedChannel={selectedChannel}
+        closeModal={closeModal}
+      />}
+      {modal === 'renameChannel' && <RenameChannelModal
+        isShowed={modal}
+        channels={channels}
         selectedChannel={selectedChannel}
         closeModal={closeModal}
       />}
