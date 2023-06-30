@@ -7,8 +7,10 @@ import Channel from 'components/Channel';
 import AddChannelModal from 'components/modals/AddChannelModal';
 import RemoveChannelModal from 'components/modals/RemoveChannelModal';
 import RenameChannelModal from 'components/modals/RenameChannelModal';
+import { useTranslation } from 'react-i18next';
 
 const Channels = () => {
+  const { t } = useTranslation();
   const [modal, setModal] = useState('');
   const [selectedChannel, setSelectedChannel] = useState(null);
   const dispatch = useDispatch();
@@ -48,7 +50,7 @@ const Channels = () => {
         closeModal={closeModal}
       />}
       <div className='channels__header d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4'>
-        <b>Каналы</b>
+        <b>{t('channelsHeader')}</b>
         <Button
           variant="link"
           className='p-0 text-primary btn btn-group-vertical'

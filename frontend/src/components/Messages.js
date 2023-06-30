@@ -1,11 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import declOfNum from 'helpers/declOfNum';
-import { MESSAGES_LABEL } from 'constants/messages';
 import { messagesSelectors } from 'store/slices/messagesSlice.js';
 import Message from 'components/Message';
+import { useTranslation } from 'react-i18next';
 
 const Messages = ({ activeChannelId, activeChannelName }) => {
+  const { t } = useTranslation();
   const messagesRef = useRef(null);
   const messages = useSelector(messagesSelectors.selectAll);
 
@@ -14,7 +14,6 @@ const Messages = ({ activeChannelId, activeChannelName }) => {
   };
 
   const channelMessages = getChannelMessages();
-  const messagesCount = `${channelMessages.length} ${declOfNum(channelMessages.length, MESSAGES_LABEL)}`;
 
   useEffect(() => {
     messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
@@ -27,7 +26,7 @@ const Messages = ({ activeChannelId, activeChannelName }) => {
           <b># {activeChannelName}</b>
         </p>
         <span className='text-muted'>
-          {messagesCount}
+          {t('messages.label', {count: channelMessages.length})}
         </span>
       </div>
       <div className='messages overflow-auto px-5' ref={messagesRef}>

@@ -5,12 +5,28 @@ import 'assets/scss/index.scss';
 import { AuthProvider } from 'context/auth';
 import App from './App';
 import reportWebVitals from 'reportWebVitals';
-import { store } from 'store/store'
+import { store } from 'store/store';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import ru from './locales/ru.js';
 
 document.querySelector('html').classList.add('h-100');
 document.body.classList.add('bg-light', 'h-100');
 document.getElementById('root').classList.add('h-100');
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+i18n
+  .use(initReactI18next)
+  .init({
+    fallbackLng: 'ru',
+    debug: true,
+    resources: {
+      ru,
+    },
+    interpolation: {
+      escapeValue: false,
+    }
+  });
 
 root.render(
   <React.StrictMode>

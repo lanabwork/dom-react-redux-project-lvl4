@@ -1,7 +1,10 @@
 import React from 'react';
 import { ButtonGroup, Button, Dropdown } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const Channel = ({channel, isActive, openChannel, selectChannel}) => {
+  const { t } = useTranslation();
+
   return (
     <ButtonGroup className="d-flex dropdown">
       <Button
@@ -19,8 +22,12 @@ const Channel = ({channel, isActive, openChannel, selectChannel}) => {
             className="flex-grow-0 rounded-0"
           />
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => selectChannel('removeChannel', channel)}>Удалить</Dropdown.Item>
-            <Dropdown.Item onClick={() => selectChannel('renameChannel', channel)}>Переименовать</Dropdown.Item>
+            <Dropdown.Item onClick={() => selectChannel('removeChannel', channel)}>
+              {t('channelDropdownMenu.remove')}
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => selectChannel('renameChannel', channel)}>
+              {t('channelDropdownMenu.rename')}
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       )}

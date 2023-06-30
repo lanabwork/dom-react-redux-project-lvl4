@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import socket from 'socket';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const AddChannelModal = ({ isShowed, channels, closeModal }) => {
+  const { t } = useTranslation();
   const [channelName, setChannelName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const channelNameRef = useRef();
@@ -15,7 +17,7 @@ const AddChannelModal = ({ isShowed, channels, closeModal }) => {
 
     const isExistChannel = channels.find((channel) => channel.name === channelName);
     if (isExistChannel) {
-      toast.error('Канал с таким именем уже существует');
+      toast.error(t('modals.addChannel.errors.isExist'));
       return false;
     }
 
@@ -35,14 +37,16 @@ const AddChannelModal = ({ isShowed, channels, closeModal }) => {
   return (
     <Modal show={isShowed} centered onHide={closeModal}>
       <Modal.Header closeButton>
-        <Modal.Title>Добавить канал</Modal.Title>
+        <Modal.Title>{t('modals.addChannel.header')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form
           noValidate
           onSubmit={addNewChannel}
         >
-          <Form.Label htmlFor="channelName" className="visually-hidden">Имя канала</Form.Label>
+          <Form.Label htmlFor="channelName" className="visually-hidden">
+            {t('modals.addChannel.name')}
+          </Form.Label>
           <Form.Control
             ref={channelNameRef}
             className="mb-2"
@@ -58,14 +62,14 @@ const AddChannelModal = ({ isShowed, channels, closeModal }) => {
               variant="secondary"
               onClick={closeModal}
             >
-              Отменить
+              {t('modals.addChannel.buttons.cancel')}
             </Button>
             <Button
               type='submit'
               variant="primary"
               disabled={!channelName.length || isSubmitting}
             >
-              Отправить
+              {t('modals.addChannel.buttons.submit')}
             </Button>
           </div>
         </Form>

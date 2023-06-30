@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import socket from 'socket';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const RenameChannelModal = ({ isShowed, channels, selectedChannel, closeModal }) => {
+  const { t } = useTranslation();
   const [channelName, setChannelName] = useState(selectedChannel.name);
   const [isInvalid, setIsInvalid] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,23 +30,25 @@ const RenameChannelModal = ({ isShowed, channels, selectedChannel, closeModal })
       if (response.status === 'ok') {
         setChannelName('');
         closeModal();
-        toast.success('Канал успешно переименован');
+        toast.success(t('modals.renameChannel.messages.success'));
         setIsSubmitting(false);
       }
     })
   };
 
   return (
-    <Modal show={isShowed} centered>
+    <Modal show={isShowed} centered onHide={closeModal}>
       <Modal.Header closeButton>
-        <Modal.Title>Переименовать канал</Modal.Title>
+        <Modal.Title>{t('modals.renameChannel.header')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form
           noValidate
           onSubmit={renameChannel}
         >
-          <Form.Label htmlFor="channelName" className="visually-hidden">Имя канала</Form.Label>
+          <Form.Label htmlFor="channelName" className="visually-hidden">
+            {t('modals.renameChannel.name')}
+          </Form.Label>
           <Form.Control
             ref={channelNameRef}
             className="mb-2"
@@ -61,21 +65,21 @@ const RenameChannelModal = ({ isShowed, channels, selectedChannel, closeModal })
             role="alert"
             data-validity={isInvalid}
           >
-            Должно быть уникальным
+            {t('modals.renameChannel.messages.errors.isExist')}
           </Form.Control.Feedback>
           <div className='d-flex justify-content-end gap-2'>
             <Button
               variant="secondary"
               onClick={closeModal}
             >
-              Отменить
+              {t('modals.renameChannel.buttons.cancel')}
             </Button>
             <Button
               type='submit'
               variant="primary"
               disabled={!channelName.length || isSubmitting}
             >
-              Отправить
+              {t('modals.renameChannel.buttons.submit')}
             </Button>
           </div>
         </Form>

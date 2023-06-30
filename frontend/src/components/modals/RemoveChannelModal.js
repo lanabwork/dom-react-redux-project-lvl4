@@ -4,8 +4,10 @@ import { Modal, Button } from 'react-bootstrap';
 import socket from 'socket';
 import { toast } from 'react-toastify';
 import { messagesSelectors, removeChannelMessages } from 'store/slices/messagesSlice.js';
+import { useTranslation } from 'react-i18next';
 
 const RemoveChannelModal = ({ isShowed, selectedChannel, closeModal }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const messages = useSelector(messagesSelectors.selectAll);
 
@@ -16,7 +18,7 @@ const RemoveChannelModal = ({ isShowed, selectedChannel, closeModal }) => {
     }, (response) => {
       if (response.status === 'ok') {
         closeModal();
-        toast.success('Канал успешно удалён')
+        toast.success(t('modals.removeChannel.messages.success'))
         const removedChannelMessagesId = messages
           .filter((message) => message.channelId === selectedChannel.id)
           .map((message) => message.id);
@@ -26,26 +28,26 @@ const RemoveChannelModal = ({ isShowed, selectedChannel, closeModal }) => {
   };
 
   return (
-    <Modal show={isShowed} centered>
+    <Modal show={isShowed} centered onHide={closeModal}>
       <Modal.Header closeButton>
-        <Modal.Title>Удалить канал</Modal.Title>
+        <Modal.Title>{t('modals.removeChannel.header')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Уверены?
+        {t('modals.removeChannel.body')}
       </Modal.Body>
       <Modal.Footer>
         <Button
           variant="secondary"
           onClick={closeModal}
         >
-          Отменить
+          {t('modals.removeChannel.buttons.cancel')}
         </Button>
         <Button
           type='submit'
           variant="danger"
           onClick={(e) => removeChannel(e)}
         >
-          Удалить
+          {t('modals.removeChannel.buttons.submit')}
         </Button>
       </Modal.Footer>
     </Modal>

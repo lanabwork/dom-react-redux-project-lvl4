@@ -6,14 +6,16 @@ import { Container, Button, Col, Form, Row, Card, Image, FloatingLabel } from 'r
 import { login } from '../api/auth';
 import { useAuth } from '../context/auth';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
+  const { t } = useTranslation();
   const { setUser } = useAuth();
   const navigate = useNavigate();
 
   let LoginSchema = yup.object().shape({
-    username: yup.string().required('Обязательное поле'),
-    password: yup.string().required('Обязательное поле'),
+    username: yup.string().required(t('validationMessage.required')),
+    password: yup.string().required(t('validationMessage.required')),
   });
 
   const formik = useFormik({
@@ -30,7 +32,7 @@ const Login = () => {
           navigate('/');
         })
         .catch(() => {
-          toast.error('Не правильно введен логин/пароль');
+          toast.error(t('loginForm.error'));
         })
         .finally(() => {
           setSubmitting(false);
@@ -52,10 +54,10 @@ const Login = () => {
                 onSubmit={formik.handleSubmit}
                 className='col-12 col-md-6 mt-3 mt-mb-0'
               >
-                <h1 className='text-center mb-4'>Войти</h1>
+                <h1 className='text-center mb-4'>{t('loginPage.header')}</h1>
                 <FloatingLabel
                   controlId="username"
-                  label="Ваш ник"
+                  label={t('loginForm.username')}
                   className="mb-3"
                 >
                   <Form.Control
@@ -63,16 +65,16 @@ const Login = () => {
                     type="text"
                     onChange={formik.handleChange}
                     value={formik.values.username}
-                    placeholder="Ваш ник"
+                    placeholder={t('loginForm.username')}
                     isInvalid={!!formik.errors.username}
                   />
                   <Form.Control.Feedback type='invalid'>{formik.errors.username}</Form.Control.Feedback>
                 </FloatingLabel>
-                <FloatingLabel controlId="password" label="Пароль" className="mb-4">
+                <FloatingLabel controlId="password" label={t('loginForm.password')} className="mb-4">
                   <Form.Control
                     name="password"
                     type="password"
-                    placeholder="Пароль"
+                    placeholder={t('loginForm.password')}
                     onChange={formik.handleChange}
                     value={formik.values.password}
                     isInvalid={!!formik.errors.password}
@@ -85,14 +87,14 @@ const Login = () => {
                   type="submit"
                   disabled={!!formik.errors.username || !!formik.errors.password || formik.isSubmitting}
                 >
-                  Войти
+                  {t('loginForm.submitButton')}
                 </Button>
               </Form>
             </Card.Body>
             <Card.Footer className="p-4">
               <div className='text-center'>
-                <span>Нет аккаунта? </span>
-                <Link to='/signup'>Регистрация</Link>
+                <span>{t('loginPage.footer')} </span>
+                <Link to='/signup'>{t('loginPage.signUpLink')}</Link>
               </div>
             </Card.Footer>
           </Card>

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import socket from 'socket';
 import { ReactComponent as ArrowRightSquare } from 'assets/icons/arrow-right-square.svg';
+import { useTranslation } from 'react-i18next';
 
 const MessageForm = ({ username, activeChannelId }) => {
+  const { t } = useTranslation();
   const [messageText, setMessageText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -36,7 +38,7 @@ const MessageForm = ({ username, activeChannelId }) => {
             type="text"
             onChange={(e) => setMessageText(e.target.value)}
             value={messageText}
-            placeholder="Введите сообщение..."
+            placeholder={t('messages.text')}
           />
           <Button
             type="submit"
