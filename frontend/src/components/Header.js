@@ -1,12 +1,26 @@
 import React from 'react';
-import { Navbar, Container } from 'react-bootstrap';
+import { Navbar, Container, Button } from 'react-bootstrap';
+import { useAuth } from 'context/auth';
+import { Link } from 'react-router-dom';
 
-const Header = () => (
-  <Navbar bg="white" variant="light" expand="lg" className='shadow-sm w-100'>
-    <Container>
-      <Navbar.Brand href="/">React Chat</Navbar.Brand>
-    </Container>
-  </Navbar>
-);
+
+const Header = () => {
+  const { accessToken, removeUser } = useAuth();
+
+  const logout = () => {
+    removeUser();
+  };
+
+  return (
+    <Navbar bg="white" variant="light" expand="lg" className='shadow-sm w-100'>
+      <Container>
+        <Link className='navbar-brand' to='/'>
+          React Chat
+        </Link>
+        {accessToken && <Button onClick={logout}>Выйти</Button>}
+      </Container>
+    </Navbar>
+  );
+}
 
 export default Header;

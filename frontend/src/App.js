@@ -12,8 +12,8 @@ function App() {
   return (
     <div className='d-flex flex-column align-items-center h-100'>
       <ToastContainer />
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path='/' element={
             <RequireAuth>

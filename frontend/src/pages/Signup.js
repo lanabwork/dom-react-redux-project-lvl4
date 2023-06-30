@@ -12,22 +12,38 @@ const Signup = () => {
   const navigate = useNavigate();
 
   let SignupSchema = yup.object().shape({
-    username: yup.string().required('Обязательное поле'),
-    password: yup.string().required('Обязательное поле'),
+    username: yup.string()
+      .required('Обязательное поле')
+      .min(3, 'От 3 до 20 символов')
+      .max(20, 'От 3 до 20 символов'),
+    password: yup.string()
+      .required('Обязательное поле')
+      .min(6, 'Не менее 6 символов'),
+    confirmPassword: yup.string()
+      .required('Обязательное поле')
+      .oneOf([yup.ref('password'), null], 'Пароли должны совпадать'),
   });
 
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
+      confirmPassword: '',
     },
     isSubmitting: false,
     validationSchema: SignupSchema,
     onSubmit: (values, { setSubmitting }) => {
       signup(values)
-        .then(({ token, username }) => {
-          setUser(token, username);
-          navigate('/');
+        .then((res) => {
+          const token = res?.data?.token;
+          const username = res?.data?.username;
+          if (token && username) {
+            setUser(token, username);
+            navigate('/');
+          }
+          if (res.status === 409) {
+            toast.error('Такой пользователь уже существует');
+          }
         })
         .catch(() => {
           toast.error('Ошибка при обработке запроса');
@@ -45,17 +61,17 @@ const Signup = () => {
           <Card className='shadow-sm'>
             <Card.Body className='row p-5'>
               <Col className='col-12 d-flex align-items-center justify-content-center' md={6}>
-                <Image src={require('../assets/images/login.jpeg')} roundedCircle />
+                <Image src={require('../assets/images/signup.jpg')} roundedCircle />
               </Col>
               <Form
                 noValidate
                 onSubmit={formik.handleSubmit}
                 className='col-12 col-md-6 mt-3 mt-mb-0'
               >
-                <h1 className='text-center mb-4'>Зарегистрироваться</h1>
+                <h1 className='text-center mb-4'>Регистрация</h1>
                 <FloatingLabel
                   controlId="username"
-                  label="Ваш ник"
+                  label="Имя пользователя"
                   className="mb-3"
                 >
                   <Form.Control
@@ -63,7 +79,7 @@ const Signup = () => {
                     type="text"
                     onChange={formik.handleChange}
                     value={formik.values.username}
-                    placeholder="Ваш ник"
+                    placeholder="Имя пользователя"
                     isInvalid={!!formik.errors.username}
                   />
                   <Form.Control.Feedback type='invalid'>{formik.errors.username}</Form.Control.Feedback>
@@ -78,6 +94,17 @@ const Signup = () => {
                     isInvalid={!!formik.errors.password}
                   />
                   <Form.Control.Feedback type='invalid'>{formik.errors.password}</Form.Control.Feedback>
+                </FloatingLabel>
+                <FloatingLabel controlId="password" label="Подтвердите пароль" className="mb-4">
+                  <Form.Control
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="Подтвердите пароль"
+                    onChange={formik.handleChange}
+                    value={formik.values.confirmPassword}
+                    isInvalid={!!formik.errors.confirmPassword}
+                  />
+                  <Form.Control.Feedback type='invalid'>{formik.errors.confirmPassword}</Form.Control.Feedback>
                 </FloatingLabel>
                 <Button
                   variant="outline-primary"

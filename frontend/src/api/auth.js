@@ -8,6 +8,10 @@ export const login = ({ username, password }) => {
 };
 export const signup = ({ username, password }) => {
   return axios.post(routes.signupPath(), { username, password })
-    .then((res) => res.data)
-    .catch((e) => console.error(e));
+    .then((response) => response)
+    .catch((error) => {
+      if (error.response) {
+       return error.response;
+      }
+    });
 };
