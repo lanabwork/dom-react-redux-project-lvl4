@@ -17,7 +17,7 @@ const AddChannelModal = ({ isShowed, channels, closeModal }) => {
 
     const isExistChannel = channels.find((channel) => channel.name === channelName);
     if (isExistChannel) {
-      toast.error(t('modals.addChannel.errors.isExist'));
+      toast.error(t('modals.addChannel.messages.errors.isExist'));
       return false;
     }
 
@@ -30,6 +30,7 @@ const AddChannelModal = ({ isShowed, channels, closeModal }) => {
         setChannelName('');
         closeModal();
         setIsSubmitting(false);
+        toast.success(t('modals.addChannel.messages.success'));
       }
     })
   };

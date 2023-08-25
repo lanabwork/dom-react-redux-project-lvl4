@@ -60,8 +60,11 @@ const ru = {
           submit: 'Отправить',
           cancel: 'Отменить'
         },
-        errors: {
-          isExist: 'Канал с таким именем уже существует'
+        messages: {
+          success: 'Канал успешно создан',
+          errors: {
+            isExist: 'Канал с таким именем уже существует'
+          }
         }
       },
       removeChannel: {
@@ -89,6 +92,9 @@ const ru = {
           }
         }
       }
+    },
+    notifications: {
+      commonError: 'Ошибка загрузки данных'
     }
   }
 };
