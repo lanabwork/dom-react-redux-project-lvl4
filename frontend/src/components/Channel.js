@@ -1,6 +1,7 @@
 import React from 'react';
 import { ButtonGroup, Button, Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import dictionaryFilter from 'leo-profanity';
 
 const Channel = ({channel, isActive, openChannel, selectChannel}) => {
   const { t } = useTranslation();
@@ -12,7 +13,7 @@ const Channel = ({channel, isActive, openChannel, selectChannel}) => {
         variant={isActive ? 'secondary' : null}
         onClick={() => openChannel(channel.id)}
       >
-        # {channel.name}
+        # {dictionaryFilter.clean(channel.name)}
       </Button>
       {channel.removable && (
         <Dropdown className="flex-grow-0">

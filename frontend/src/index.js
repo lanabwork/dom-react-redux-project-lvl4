@@ -9,6 +9,9 @@ import { store } from 'store/store';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import ru from './locales/ru.js';
+import dictionaryFilter from 'leo-profanity';
+
+dictionaryFilter.loadDictionary('ru');
 
 document.querySelector('html').classList.add('h-100');
 document.body.classList.add('bg-light', 'h-100');
