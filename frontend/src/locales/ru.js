@@ -29,9 +29,7 @@ const ru = {
     validationMessage: {
       required: 'Обязательное поле',
       confirmPassword: 'Пароли должны совпадать',
-      minMax_one: 'От {{min}} до {{max}} символов',
-      minMax_few: 'От {{min}} до {{max}} символов',
-      minMax_many: 'От {{min}} до {{max}} символов',
+      minMax: 'От {{min}} до {{max}} символов',
       min_one: 'Не менее {{count}} символ',
       min_few: 'Не менее {{count}} символа',
       min_many: 'Не менее {{count}} символов',
