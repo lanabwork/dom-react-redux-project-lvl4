@@ -16,7 +16,7 @@ const Header = () => {
     <Navbar bg="white" variant="light" expand="lg" className='shadow-sm w-100'>
       <Container>
         <Link className='navbar-brand' to='/'>
-          React Chat
+          Hexlet Chat
         </Link>
         {accessToken && <Button onClick={logout}>{t('logoutButton')}</Button>}
       </Container>
