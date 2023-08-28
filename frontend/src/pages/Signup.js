@@ -16,8 +16,8 @@ const Signup = () => {
   let SignupSchema = yup.object().shape({
     username: yup.string()
       .required(t('validationMessage.required'))
-      .min(3, t('validationMessage.min', {count: 3}))
-      .max(20, t('validationMessage.max', {count: 20})),
+      .min(3, t('validationMessage.minMax', {min: 3, max: 20}))
+      .max(20, t('validationMessage.minMax', {min: 3, max: 20})),
     password: yup.string()
       .required(t('validationMessage.required'))
       .min(6, t('validationMessage.min', {count: 6})),

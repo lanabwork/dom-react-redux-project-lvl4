@@ -9,7 +9,7 @@ const ru = {
       username: 'Ваш ник',
       password: 'Пароль',
       submitButton: 'Войти',
-      error: 'Не правильно введен логин/пароль'
+      error: 'Неверные имя пользователя или пароль'
     },
     signUpPage: {
       header: 'Регистрация',
@@ -29,9 +29,12 @@ const ru = {
     validationMessage: {
       required: 'Обязательное поле',
       confirmPassword: 'Пароли должны совпадать',
-      min_one: 'Минимально {{count}} символ',
-      min_few: 'Минимально {{count}} символа',
-      min_many: 'Минимально {{count}} символов',
+      minMax_one: 'От {{min}} до {{max}} символов',
+      minMax_few: 'От {{min}} до {{max}} символов',
+      minMax_many: 'От {{min}} до {{max}} символов',
+      min_one: 'Не менее {{count}} символ',
+      min_few: 'Не менее {{count}} символа',
+      min_many: 'Не менее {{count}} символов',
       max_one: 'Максимально {{count}} символ',
       max_few: 'Максимально {{count}} символа',
       max_many: 'Максимально {{count}} символов',
@@ -61,7 +64,7 @@ const ru = {
           cancel: 'Отменить'
         },
         messages: {
-          success: 'Канал успешно создан',
+          success: 'Канал создан',
           errors: {
             isExist: 'Канал с таким именем уже существует'
           }
@@ -75,7 +78,7 @@ const ru = {
           cancel: 'Отменить'
         },
         messages: {
-          success: 'Канал успешно удалён'
+          success: 'Канал удалён'
         }
       },
       renameChannel: {
@@ -86,7 +89,7 @@ const ru = {
           cancel: 'Отменить'
         },
         messages: {
-          success: 'Канал успешно переименован',
+          success: 'Канал переименован',
           errors: {
             isExist: 'Должно быть уникальным'
           }
@@ -94,7 +97,7 @@ const ru = {
       }
     },
     notifications: {
-      commonError: 'Ошибка загрузки данных'
+      commonError: 'Ошибка соединения'
     }
   }
 };
