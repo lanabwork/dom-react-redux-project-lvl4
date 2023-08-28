@@ -19,8 +19,6 @@ const Channels = () => {
 
   const openChannel = (channelId) => {
     dispatch(setActiveChannelId(channelId));
-    const a = null;
-    return a.testHello();
   };
 
   const closeModal = () => {
