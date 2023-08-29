@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/auth';
 
-function Header() {
+const Header = function Header() {
   const { t } = useTranslation();
   const { accessToken, removeUser } = useAuth();
 
@@ -22,6 +22,6 @@ function Header() {
       </Container>
     </Navbar>
   );
-}
+};
 
 export default Header;

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
 // eslint-disable-next-line react/prop-types
-function AddChannelModal({ isShowed, channels, closeModal }) {
+const AddChannelModal = function AddChannelModal({ isShowed, channels, closeModal }) {
   const { t } = useTranslation();
   const [channelName, setChannelName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -81,6 +81,6 @@ function AddChannelModal({ isShowed, channels, closeModal }) {
       </Modal.Body>
     </Modal>
   );
-}
+};
 
 export default AddChannelModal;

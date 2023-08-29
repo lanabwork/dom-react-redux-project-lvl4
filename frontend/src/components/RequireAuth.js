@@ -8,10 +8,8 @@ const RequireAuth = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    let pathName = '/login';
-    if (location.pathname === '/signup') pathName = '/signup';
     // eslint-disable-next-line no-unused-expressions
-    accessToken ? navigate('/') : navigate(pathName);
+    accessToken ? navigate('/') : navigate(location.pathname === '/signup' ? '/login' : '/signup');
   }, [accessToken, location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return children;

@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux'
-import 'assets/scss/index.scss';
-import { AuthProvider } from 'context/auth';
-import App from './App';
-import reportWebVitals from 'reportWebVitals';
-import { store } from 'store/store';
+import { Provider } from 'react-redux';
+import './assets/scss/index.scss';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import ru from './locales/ru.js';
 import dictionaryFilter from 'leo-profanity';
+import { AuthProvider } from './context/auth';
+import reportWebVitals from './reportWebVitals';
+import { store } from './store/store';
+import ru from './locales/ru';
+import App from './App';
 
 dictionaryFilter.list();
 dictionaryFilter.clearList();
@@ -32,17 +32,18 @@ i18n
     },
     interpolation: {
       escapeValue: false,
-    }
+    },
   });
 
 root.render(
+  // eslint-disable-next-line react/jsx-filename-extension
   <React.StrictMode>
     <AuthProvider>
       <Provider store={store}>
-        <App/>
+        <App />
       </Provider>
     </AuthProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

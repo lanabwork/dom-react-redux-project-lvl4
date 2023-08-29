@@ -9,7 +9,7 @@ import MessageForm from '../components/MessageForm';
 import { useAuth } from '../context/auth';
 import { getData } from '../api/data';
 
-function Main() {
+const Main = function Main() {
   const { accessToken, username } = useAuth();
   const dispatch = useDispatch();
   const channels = useSelector(channelsSelectors.selectAll);
@@ -44,6 +44,6 @@ function Main() {
       </Row>
     </Container>
   );
-}
+};
 
 export default Main;

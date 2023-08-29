@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation, Trans } from 'react-i18next';
 import NotFoundImage from '../assets/images/404.svg';
 
-function NotFound() {
+const NotFound = function NotFound() {
   const { t } = useTranslation();
 
   return (
@@ -19,6 +19,6 @@ function NotFound() {
       </p>
     </div>
   );
-}
+};
 
 export default NotFound;

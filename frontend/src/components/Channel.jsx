@@ -3,7 +3,7 @@ import { ButtonGroup, Button, Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import dictionaryFilter from 'leo-profanity';
 
-function Channel({
+const Channel = function Channel({
   // eslint-disable-next-line react/prop-types
   channel, isActive, openChannel, selectChannel,
 }) {
@@ -44,6 +44,6 @@ function Channel({
       )}
     </ButtonGroup>
   );
-}
+};
 
 export default Channel;

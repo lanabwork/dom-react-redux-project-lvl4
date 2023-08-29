@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { signup } from '../api/auth';
 import { useAuth } from '../context/auth';
 
-function Signup() {
+const Signup = function Signup() {
   const { t } = useTranslation();
   const { setUser } = useAuth();
   const navigate = useNavigate();
@@ -134,6 +134,6 @@ function Signup() {
       </Row>
     </Container>
   );
-}
+};
 
 export default Signup;

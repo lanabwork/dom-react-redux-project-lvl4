@@ -5,7 +5,7 @@ import { messagesSelectors } from '../store/slices/messagesSlice';
 import Message from './Message';
 
 // eslint-disable-next-line react/prop-types
-function Messages({ activeChannelId, activeChannelName }) {
+const Messages = function Messages({ activeChannelId, activeChannelName }) {
   const { t } = useTranslation();
   const messagesRef = useRef(null);
   const messages = useSelector(messagesSelectors.selectAll);
@@ -37,6 +37,6 @@ function Messages({ activeChannelId, activeChannelName }) {
       </div>
     </>
   );
-}
+};
 
 export default Messages;

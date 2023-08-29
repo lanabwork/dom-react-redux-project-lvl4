@@ -28,7 +28,7 @@ const history = createBrowserHistory();
 
 history.listen(historyContext(rollbar));
 
-function App() {
+const App = function App() {
   return (
     <div className="d-flex flex-column align-items-center h-100">
       <ToastContainer />
@@ -64,6 +64,6 @@ function App() {
       </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;

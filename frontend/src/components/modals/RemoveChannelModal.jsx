@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { messagesSelectors, removeChannelMessages } from '../../store/slices/messagesSlice';
 
 // eslint-disable-next-line react/prop-types
-function RemoveChannelModal({ isShowed, selectedChannel, closeModal }) {
+const RemoveChannelModal = function RemoveChannelModal({ isShowed, selectedChannel, closeModal }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const messages = useSelector(messagesSelectors.selectAll);
@@ -56,6 +56,6 @@ function RemoveChannelModal({ isShowed, selectedChannel, closeModal }) {
       </Modal.Footer>
     </Modal>
   );
-}
+};
 
 export default RemoveChannelModal;
