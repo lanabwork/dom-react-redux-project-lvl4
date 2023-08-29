@@ -22,7 +22,7 @@ const Signup = () => {
       .required(t('validationMessage.required'))
       .min(6, t('validationMessage.min', {count: 6})),
     confirmPassword: yup.string()
-      .required(t('validationMessage.required'))
+      .required(t('validationMessage.confirmPassword'))
       .oneOf([yup.ref('password'), null], t('validationMessage.confirmPassword')),
   });
 
@@ -35,7 +35,6 @@ const Signup = () => {
     isSubmitting: false,
     validationSchema: SignupSchema,
     onSubmit: (values, { setSubmitting }) => {
-      console.log(111);
       signup(values)
         .then((res) => {
           const token = res?.data?.token;
