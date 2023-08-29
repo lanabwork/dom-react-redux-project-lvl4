@@ -35,6 +35,7 @@ const Signup = () => {
     isSubmitting: false,
     validationSchema: SignupSchema,
     onSubmit: (values, { setSubmitting }) => {
+      console.log(111);
       signup(values)
         .then((res) => {
           const token = res?.data?.token;
@@ -112,7 +113,6 @@ const Signup = () => {
                   variant="outline-primary"
                   className='w-100 mb-3'
                   type="submit"
-                  disabled={!!formik.errors.username || !!formik.errors.password || formik.isSubmitting}
                 >
                   {t('signUpForm.submitButton')}
                 </Button>
