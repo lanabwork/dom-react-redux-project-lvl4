@@ -11,7 +11,11 @@ import { initReactI18next } from 'react-i18next';
 import ru from './locales/ru.js';
 import dictionaryFilter from 'leo-profanity';
 
-dictionaryFilter.loadDictionary('ru');
+dictionaryFilter.list();
+dictionaryFilter.clearList();
+dictionaryFilter.add(dictionaryFilter.getDictionary('en'));
+dictionaryFilter.add(dictionaryFilter.getDictionary('ru'));
+dictionaryFilter.list();
 
 document.querySelector('html').classList.add('h-100');
 document.body.classList.add('bg-light', 'h-100');
