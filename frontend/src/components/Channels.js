@@ -57,6 +57,7 @@ const Channels = () => {
           onClick={() => setModal('addChannel')}
         >
           <PlusSquare width='20' height='20' />
+          <span className="visually-hidden">+</span>
         </Button>
       </div>
       <Nav
