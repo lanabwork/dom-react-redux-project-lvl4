@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { messagesSelectors, removeChannelMessages } from '../../store/slices/messagesSlice';
 
-// eslint-disable-next-line react/prop-types
+// eslint-disable-next-line react/prop-types, react/function-component-definition
 const RemoveChannelModal = function RemoveChannelModal({ isShowed, selectedChannel, closeModal }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();

@@ -4,7 +4,7 @@ const AuthContext = createContext({});
 
 const getLocalStorageItem = (item) => localStorage.getItem(item);
 
-// eslint-disable-next-line react/prop-types
+// eslint-disable-next-line react/prop-types, react/function-component-definition
 export const AuthProvider = function AuthProvider({ children }) {
   const [accessToken, setAccessToken] = useState(getLocalStorageItem('accessToken') ?? '');
   const [username, setUsername] = useState(getLocalStorageItem('username') ?? '');

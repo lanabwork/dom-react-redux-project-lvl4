@@ -1,7 +1,7 @@
 import React from 'react';
 import dictionaryFilter from 'leo-profanity';
 
-// eslint-disable-next-line react/prop-types
+// eslint-disable-next-line react/prop-types, react/function-component-definition
 const Message = function Message({ message }) {
   return (
     <div className="text-break mb-2">

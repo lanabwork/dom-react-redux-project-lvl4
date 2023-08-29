@@ -9,6 +9,7 @@ import MessageForm from '../components/MessageForm';
 import { useAuth } from '../context/auth';
 import { getData } from '../api/data';
 
+// eslint-disable-next-line react/function-component-definition
 const Main = function Main() {
   const { accessToken, username } = useAuth();
   const dispatch = useDispatch();

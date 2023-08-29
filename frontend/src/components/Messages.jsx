@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { messagesSelectors } from '../store/slices/messagesSlice';
 import Message from './Message';
 
-// eslint-disable-next-line react/prop-types
+// eslint-disable-next-line react/prop-types, react/function-component-definition
 const Messages = function Messages({ activeChannelId, activeChannelName }) {
   const { t } = useTranslation();
   const messagesRef = useRef(null);

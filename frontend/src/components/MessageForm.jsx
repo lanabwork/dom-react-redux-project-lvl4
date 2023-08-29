@@ -5,7 +5,7 @@ import socket from 'socket';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as ArrowRightSquare } from '../assets/icons/arrow-right-square.svg';
 
-// eslint-disable-next-line react/prop-types
+// eslint-disable-next-line react/prop-types, react/function-component-definition
 const MessageForm = function MessageForm({ username, activeChannelId }) {
   const { t } = useTranslation();
   const [messageText, setMessageText] = useState('');

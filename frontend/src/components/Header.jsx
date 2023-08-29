@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/auth';
 
+// eslint-disable-next-line react/function-component-definition
 const Header = function Header() {
   const { t } = useTranslation();
   const { accessToken, removeUser } = useAuth();

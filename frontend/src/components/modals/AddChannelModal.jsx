@@ -5,7 +5,7 @@ import socket from 'socket';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-// eslint-disable-next-line react/prop-types
+// eslint-disable-next-line react/prop-types, react/function-component-definition
 const AddChannelModal = function AddChannelModal({ isShowed, channels, closeModal }) {
   const { t } = useTranslation();
   const [channelName, setChannelName] = useState('');

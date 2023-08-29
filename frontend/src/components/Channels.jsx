@@ -9,6 +9,7 @@ import AddChannelModal from './modals/AddChannelModal';
 import RemoveChannelModal from './modals/RemoveChannelModal';
 import RenameChannelModal from './modals/RenameChannelModal';
 
+// eslint-disable-next-line react/function-component-definition
 const Channels = function Channels() {
   const { t } = useTranslation();
   const [modal, setModal] = useState('');

@@ -5,6 +5,7 @@ import socket from 'socket';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
+// eslint-disable-next-line react/function-component-definition
 const RenameChannelModal = function RenameChannelModal({
   // eslint-disable-next-line react/prop-types
   isShowed, channels, selectedChannel, closeModal,

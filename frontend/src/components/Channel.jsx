@@ -3,6 +3,7 @@ import { ButtonGroup, Button, Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import dictionaryFilter from 'leo-profanity';
 
+// eslint-disable-next-line react/function-component-definition
 const Channel = function Channel({
   // eslint-disable-next-line react/prop-types
   channel, isActive, openChannel, selectChannel,

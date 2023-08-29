@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { login } from '../api/auth';
 import { useAuth } from '../context/auth';
 
+// eslint-disable-next-line react/function-component-definition
 const Login = function Login() {
   const { t } = useTranslation();
   const { setUser } = useAuth();
