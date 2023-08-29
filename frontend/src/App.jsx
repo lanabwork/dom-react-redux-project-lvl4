@@ -28,6 +28,7 @@ const history = createBrowserHistory();
 
 history.listen(historyContext(rollbar));
 
+// eslint-disable-next-line react/function-component-definition
 const App = function App() {
   return (
     <div className="d-flex flex-column align-items-center h-100">
