@@ -21,7 +21,9 @@ const Channel = ({channel, isActive, openChannel, selectChannel}) => {
             split
             variant={isActive ? 'secondary' : null}
             className="flex-grow-0 rounded-0"
-          />
+          >
+            <span className="visually-hidden">Управление каналом</span>
+          </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item onClick={() => selectChannel('removeChannel', channel)}>
               {t('channelDropdownMenu.remove')}
