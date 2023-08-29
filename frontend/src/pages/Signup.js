@@ -97,7 +97,7 @@ const Signup = () => {
                   />
                   <Form.Control.Feedback type='invalid'>{formik.errors.password}</Form.Control.Feedback>
                 </FloatingLabel>
-                <FloatingLabel controlId="password" label={t('signUpForm.confirmPassword')} className="mb-4">
+                <FloatingLabel controlId="confirmPassword" label={t('signUpForm.confirmPassword')} className="mb-4">
                   <Form.Control
                     name="confirmPassword"
                     type="password"
