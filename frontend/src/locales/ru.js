@@ -39,6 +39,7 @@ const ru = {
     },
     messages: {
       text: 'Введите сообщение...',
+      ariaLabel: 'Новое сообщение',
       label_one: '{{count}} сообщение',
       label_few: '{{count}} сообщения',
       label_many: '{{count}} сообщений',

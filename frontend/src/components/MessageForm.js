@@ -39,6 +39,7 @@ const MessageForm = ({ username, activeChannelId }) => {
             onChange={(e) => setMessageText(e.target.value)}
             value={messageText}
             placeholder={t('messages.text')}
+            aria-label={t('messages.ariaLabel')}
           />
           <Button
             type="submit"
