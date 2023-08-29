@@ -5,13 +5,14 @@ const channelsAdapter = createEntityAdapter();
 const initialState = {
   channels: channelsAdapter.getInitialState(),
   activeChannelId: 1,
-}
+};
 
 export const channelsSlice = createSlice({
   name: 'channels',
   initialState,
   reducers: {
     setActiveChannelId: (state, action) => {
+      // eslint-disable-next-line no-param-reassign
       state.activeChannelId = action.payload;
     },
     setChannels(state, action) {
@@ -26,14 +27,16 @@ export const channelsSlice = createSlice({
     renameChannel(state, action) {
       channelsAdapter.updateOne(
         state.channels,
-        {id: action.payload.id, changes: { name: action.payload.name }}
+        { id: action.payload.id, changes: { name: action.payload.name } },
       );
     },
   },
-})
+});
 
 export const channelsSelectors = channelsAdapter.getSelectors((state) => state.channels.channels);
 
-export const { setActiveChannelId, setChannels, addChannel, removeChannel, renameChannel } = channelsSlice.actions;
+export const {
+  setActiveChannelId, setChannels, addChannel, removeChannel, renameChannel,
+} = channelsSlice.actions;
 
 export default channelsSlice.reducer;

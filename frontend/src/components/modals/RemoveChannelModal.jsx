@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
+// eslint-disable-next-line import/no-unresolved
 import socket from 'socket';
 import { toast } from 'react-toastify';
-import { messagesSelectors, removeChannelMessages } from 'store/slices/messagesSlice.js';
 import { useTranslation } from 'react-i18next';
+import { messagesSelectors, removeChannelMessages } from '../../store/slices/messagesSlice';
 
-const RemoveChannelModal = ({ isShowed, selectedChannel, closeModal }) => {
+// eslint-disable-next-line react/prop-types
+function RemoveChannelModal({ isShowed, selectedChannel, closeModal }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const messages = useSelector(messagesSelectors.selectAll);
@@ -14,17 +16,19 @@ const RemoveChannelModal = ({ isShowed, selectedChannel, closeModal }) => {
   const removeChannel = (e) => {
     e.preventDefault();
     socket.emit('removeChannel', {
+      // eslint-disable-next-line react/prop-types
       id: selectedChannel.id,
     }, (response) => {
       if (response.status === 'ok') {
         closeModal();
-        toast.success(t('modals.removeChannel.messages.success'))
+        toast.success(t('modals.removeChannel.messages.success'));
         const removedChannelMessagesId = messages
+          // eslint-disable-next-line react/prop-types
           .filter((message) => message.channelId === selectedChannel.id)
           .map((message) => message.id);
         dispatch(removeChannelMessages(removedChannelMessagesId));
       }
-    })
+    });
   };
 
   return (
@@ -43,7 +47,7 @@ const RemoveChannelModal = ({ isShowed, selectedChannel, closeModal }) => {
           {t('modals.removeChannel.buttons.cancel')}
         </Button>
         <Button
-          type='submit'
+          type="submit"
           variant="danger"
           onClick={(e) => removeChannel(e)}
         >
@@ -52,6 +56,6 @@ const RemoveChannelModal = ({ isShowed, selectedChannel, closeModal }) => {
       </Modal.Footer>
     </Modal>
   );
-};
+}
 
 export default RemoveChannelModal;

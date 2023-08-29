@@ -1,53 +1,56 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
+// eslint-disable-next-line import/no-unresolved
 import socket from 'socket';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-const RenameChannelModal = ({ isShowed, channels, selectedChannel, closeModal }) => {
+// eslint-disable-next-line react/prop-types
+function AddChannelModal({ isShowed, channels, closeModal }) {
   const { t } = useTranslation();
-  const [channelName, setChannelName] = useState(selectedChannel.name);
-  const [isInvalid, setIsInvalid] = useState(false);
+  const [channelName, setChannelName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const channelNameRef = useRef();
   useEffect(() => channelNameRef.current && channelNameRef.current.focus());
 
-  const renameChannel = (e) => {
+  // eslint-disable-next-line consistent-return
+  const addNewChannel = (e) => {
     e.preventDefault();
     if (!channelName.length) return false;
 
+    // eslint-disable-next-line react/prop-types
     const isExistChannel = channels.find((channel) => channel.name === channelName);
     if (isExistChannel) {
-      setIsInvalid(true);
+      toast.error(t('modals.addChannel.messages.errors.isExist'));
       return false;
     }
 
     setIsSubmitting(true);
-    socket.emit('renameChannel', {
-      id: selectedChannel.id,
+    socket.emit('newChannel', {
       name: channelName,
+      removable: false,
     }, (response) => {
       if (response.status === 'ok') {
         setChannelName('');
         closeModal();
-        toast.success(t('modals.renameChannel.messages.success'));
         setIsSubmitting(false);
+        toast.success(t('modals.addChannel.messages.success'));
       }
-    })
+    });
   };
 
   return (
     <Modal show={isShowed} centered onHide={closeModal}>
       <Modal.Header closeButton>
-        <Modal.Title>{t('modals.renameChannel.header')}</Modal.Title>
+        <Modal.Title>{t('modals.addChannel.header')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form
           noValidate
-          onSubmit={renameChannel}
+          onSubmit={addNewChannel}
         >
           <Form.Label htmlFor="channelName" className="visually-hidden">
-            {t('modals.renameChannel.name')}
+            {t('modals.addChannel.name')}
           </Form.Label>
           <Form.Control
             ref={channelNameRef}
@@ -57,35 +60,27 @@ const RenameChannelModal = ({ isShowed, channels, selectedChannel, closeModal })
             type="text"
             onChange={(e) => setChannelName(e.target.value)}
             value={channelName}
-            isInvalid={isInvalid}
+            autoFocus
           />
-          <Form.Control.Feedback
-            className="font-weight-bold"
-            type="invalid"
-            role="alert"
-            data-validity={isInvalid}
-          >
-            {t('modals.renameChannel.messages.errors.isExist')}
-          </Form.Control.Feedback>
-          <div className='d-flex justify-content-end gap-2'>
+          <div className="d-flex justify-content-end gap-2">
             <Button
               variant="secondary"
               onClick={closeModal}
             >
-              {t('modals.renameChannel.buttons.cancel')}
+              {t('modals.addChannel.buttons.cancel')}
             </Button>
             <Button
-              type='submit'
+              type="submit"
               variant="primary"
               disabled={!channelName.length || isSubmitting}
             >
-              {t('modals.renameChannel.buttons.submit')}
+              {t('modals.addChannel.buttons.submit')}
             </Button>
           </div>
         </Form>
       </Modal.Body>
     </Modal>
   );
-};
+}
 
-export default RenameChannelModal;
+export default AddChannelModal;

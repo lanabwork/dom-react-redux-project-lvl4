@@ -1,7 +1,9 @@
 import { io } from 'socket.io-client';
-import { store } from 'store/store';
-import { addMessage } from 'store/slices/messagesSlice.js';
-import { addChannel, removeChannel, renameChannel, setActiveChannelId } from 'store/slices/channelsSlice.js';
+import { store } from './store/store';
+import { addMessage } from './store/slices/messagesSlice';
+import {
+  addChannel, removeChannel, renameChannel, setActiveChannelId,
+} from './store/slices/channelsSlice';
 
 const socket = io('');
 
@@ -22,7 +24,7 @@ socket.on('removeChannel', (channel) => {
 socket.on('renameChannel', (channel) => {
   store.dispatch(renameChannel({
     id: channel.id,
-    name:  channel.name,
+    name: channel.name,
   }));
 });
 

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
+// eslint-disable-next-line import/no-unresolved
 import socket from 'socket';
-import { ReactComponent as ArrowRightSquare } from 'assets/icons/arrow-right-square.svg';
 import { useTranslation } from 'react-i18next';
+import { ReactComponent as ArrowRightSquare } from '../assets/icons/arrow-right-square.svg';
 
-const MessageForm = ({ username, activeChannelId }) => {
+// eslint-disable-next-line react/prop-types
+function MessageForm({ username, activeChannelId }) {
   const { t } = useTranslation();
   const [messageText, setMessageText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -25,15 +27,15 @@ const MessageForm = ({ username, activeChannelId }) => {
   };
 
   return (
-    <div className='mt-auto px-5 py-3'>
+    <div className="mt-auto px-5 py-3">
       <Form
         noValidate
         onSubmit={sendMessage}
-        className='py-1 border rounded-2'
+        className="py-1 border rounded-2"
       >
-        <InputGroup className='has-validation'>
+        <InputGroup className="has-validation">
           <Form.Control
-            className='border-0 p-0 ps-2'
+            className="border-0 p-0 ps-2"
             name="messageText"
             type="text"
             onChange={(e) => setMessageText(e.target.value)}
@@ -44,15 +46,15 @@ const MessageForm = ({ username, activeChannelId }) => {
           <Button
             type="submit"
             variant="link"
-            className='btn-group-vertical'
+            className="btn-group-vertical"
             disabled={!messageText.length || isSubmitting}
           >
-            <ArrowRightSquare width='20' height='20' />
+            <ArrowRightSquare width="20" height="20" />
           </Button>
         </InputGroup>
       </Form>
     </div>
   );
-};
+}
 
 export default MessageForm;

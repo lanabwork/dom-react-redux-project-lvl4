@@ -7,7 +7,7 @@ export const messagesSlice = createSlice({
   initialState: messagesAdapter.getInitialState(),
   reducers: {
     setMessages(state, action) {
-      messagesAdapter.setAll(state, action.payload)
+      messagesAdapter.setAll(state, action.payload);
     },
     addMessage: messagesAdapter.addOne,
     removeMessage: messagesAdapter.removeOne,
@@ -16,10 +16,12 @@ export const messagesSlice = createSlice({
     },
     updateMessage: messagesAdapter.updateOne,
   },
-})
+});
 
-export const messagesSelectors = messagesAdapter.getSelectors((state) => state.messages)
+export const messagesSelectors = messagesAdapter.getSelectors((state) => state.messages);
 
-export const { setMessages, addMessage, removeMessage, updateMessage, removeChannelMessages } = messagesSlice.actions;
+export const {
+  setMessages, addMessage, removeMessage, updateMessage, removeChannelMessages,
+} = messagesSlice.actions;
 
 export default messagesSlice.reducer;

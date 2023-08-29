@@ -3,18 +3,18 @@ const ru = {
     loginPage: {
       header: 'Войти',
       footer: 'Нет аккаунта?',
-      signUpLink: 'Регистрация'
+      signUpLink: 'Регистрация',
     },
     loginForm: {
       username: 'Ваш ник',
       password: 'Пароль',
       submitButton: 'Войти',
-      error: 'Неверные имя пользователя или пароль'
+      error: 'Неверные имя пользователя или пароль',
     },
     signUpPage: {
       header: 'Регистрация',
       footer: 'Есть аккаунт?',
-      loginLink: 'Авторизация'
+      loginLink: 'Авторизация',
     },
     signUpForm: {
       username: 'Имя пользователя',
@@ -23,8 +23,8 @@ const ru = {
       submitButton: 'Зарегистрироваться',
       errors: {
         usernameNotUnique: 'Такой пользователь уже существует',
-        unknownError: 'Ошибка при обработке запроса'
-      }
+        unknownError: 'Ошибка при обработке запроса',
+      },
     },
     validationMessage: {
       required: 'Обязательное поле',
@@ -48,11 +48,11 @@ const ru = {
     channelsHeader: 'Каналы',
     channelDropdownMenu: {
       remove: 'Удалить',
-      rename: 'Переименовать'
+      rename: 'Переименовать',
     },
     NotFoundPage: {
       header: 'Страница не найдена',
-      linkMainPage: 'Но вы можете перейти <1>на главную страницу</1>'
+      linkMainPage: 'Но вы можете перейти <1>на главную страницу</1>',
     },
     modals: {
       addChannel: {
@@ -60,45 +60,45 @@ const ru = {
         name: 'Имя канала',
         buttons: {
           submit: 'Отправить',
-          cancel: 'Отменить'
+          cancel: 'Отменить',
         },
         messages: {
           success: 'Канал создан',
           errors: {
-            isExist: 'Канал с таким именем уже существует'
-          }
-        }
+            isExist: 'Канал с таким именем уже существует',
+          },
+        },
       },
       removeChannel: {
         header: 'Удалить канал',
         body: 'Уверены?',
         buttons: {
           submit: 'Удалить',
-          cancel: 'Отменить'
+          cancel: 'Отменить',
         },
         messages: {
-          success: 'Канал удалён'
-        }
+          success: 'Канал удалён',
+        },
       },
       renameChannel: {
         header: 'Переименовать канал',
         name: 'Имя канала',
         buttons: {
           submit: 'Отправить',
-          cancel: 'Отменить'
+          cancel: 'Отменить',
         },
         messages: {
           success: 'Канал переименован',
           errors: {
-            isExist: 'Должно быть уникальным'
-          }
-        }
-      }
+            isExist: 'Должно быть уникальным',
+          },
+        },
+      },
     },
     notifications: {
-      commonError: 'Ошибка соединения'
-    }
-  }
+      commonError: 'Ошибка соединения',
+    },
+  },
 };
 
 export default ru;

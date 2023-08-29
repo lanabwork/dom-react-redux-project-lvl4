@@ -3,18 +3,26 @@ import { ButtonGroup, Button, Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import dictionaryFilter from 'leo-profanity';
 
-const Channel = ({channel, isActive, openChannel, selectChannel}) => {
+function Channel({
+  // eslint-disable-next-line react/prop-types
+  channel, isActive, openChannel, selectChannel,
+}) {
   const { t } = useTranslation();
 
   return (
     <ButtonGroup className="d-flex dropdown">
       <Button
-        className='w-100 rounded-0 text-start'
+        className="w-100 rounded-0 text-start"
         variant={isActive ? 'secondary' : null}
+        /* eslint-disable-next-line react/prop-types */
         onClick={() => openChannel(channel.id)}
       >
-        # {dictionaryFilter.clean(channel.name)}
+        #
+        {' '}
+        {/* eslint-disable-next-line react/prop-types */}
+        {dictionaryFilter.clean(channel.name)}
       </Button>
+      {/* eslint-disable-next-line react/prop-types */}
       {channel.removable && (
         <Dropdown className="flex-grow-0">
           <Dropdown.Toggle
@@ -36,6 +44,6 @@ const Channel = ({channel, isActive, openChannel, selectChannel}) => {
       )}
     </ButtonGroup>
   );
-};
+}
 
 export default Channel;

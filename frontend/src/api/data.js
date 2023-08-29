@@ -1,17 +1,16 @@
 import axios from 'axios';
-import routes from './routes.js';
 import { toast } from 'react-toastify';
 import i18n from 'i18next';
+import routes from './routes';
 
-export const getData = (accessToken) => {
-  return axios.get(routes.dataPath(), {
-    headers: {
-      'Authorization': `Bearer ${accessToken}`
-    },
-  })
-    .then((res) => res.data)
-    .catch((e) => {
-      console.error(e);
-      toast.error(i18n.t('notifications.commonError'));
-    });
-};
+// eslint-disable-next-line import/prefer-default-export
+export const getData = (accessToken) => axios.get(routes.dataPath(), {
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+  },
+})
+  .then((res) => res.data)
+  .catch((e) => {
+    console.error(e);
+    toast.error(i18n.t('notifications.commonError'));
+  });
