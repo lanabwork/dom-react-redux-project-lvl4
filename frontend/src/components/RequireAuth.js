@@ -9,7 +9,7 @@ const RequireAuth = ({ children }) => {
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
-    accessToken ? navigate('/') : navigate(location.pathname === '/signup' ? '/login' : '/signup');
+    accessToken ? navigate('/') : navigate(location.pathname === '/signup' ? '/signup' : '/login');
   }, [accessToken, location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return children;
